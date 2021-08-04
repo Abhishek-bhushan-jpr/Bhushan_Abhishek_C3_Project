@@ -37,12 +37,20 @@ class RestaurantTest {
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>ORDER VALUE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
-    public void fail_test_order_value_should_get_cumulative_total_when_collection_of_items_selected(){
+    public void order_value_should_get_cumulative_total_when_collection_of_items_selected(){
         restaurant_added_for_testing();
         demo = restaurant.getMenu();
         assertEquals(506,restaurant.getOrderValue(demo));
     }
-
+    @Test
+    public void order_value_should_reduce_cumulative_total_when_an_item_removed(){
+        restaurant_added_for_testing();
+        demo = restaurant.getMenu();
+        int total = restaurant.getOrderValue(demo);
+        int afterTotal = demo.get(1).getPrice();
+        demo.remove(1);
+        assertEquals(total-afterTotal,restaurant.getOrderValue(demo));
+    }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

@@ -16,6 +16,8 @@ public class Restaurant {
         this.location = location;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
+        //this.menu.add(new Item("Lemon Rice",73));
+        //this.menu.add(new Item("Sambar Rice",45));
     }
 
     public boolean isRestaurantOpen() {
@@ -36,7 +38,7 @@ public class Restaurant {
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
-        return menu;
+        return this.menu;
     }
 
     private Item findItemByName(String itemName){
@@ -71,6 +73,13 @@ public class Restaurant {
 
     public String getName() {
         return name;
+    }
+    public int getOrderValue(List<Item> item){
+        int totalValue = 0;
+        for (Item myItem : item) {
+            totalValue += myItem.getPrice();
+        }
+        return totalValue;
     }
 
 }
